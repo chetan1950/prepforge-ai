@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local database files
+/prisma/*.db
+/prisma/*.db-journal
+
+# Keep the setup template in source control
+!.env.example

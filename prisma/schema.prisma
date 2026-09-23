@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String             @id @default(cuid())
+  name              String
+  email             String             @unique
+  passwordHash      String
+  college           String?
+  degree            String?
+  branch            String?
+  graduationYear    Int?
+  targetRole        String             @default("Software Developer")
+  experienceLevel   String             @default("Beginner")
+  preferredLanguage String             @default("Java")
+  role              String             @default("USER")
+  createdAt         DateTime           @default(now())
+  attempts          QuestionAttempt[]
+  submissions       CodingSubmission[]
+  interviewPractices InterviewPractice[]
+  @@index([createdAt])
+}
+
+model Question {
+  id          String             @id @default(cuid())
+  prompt      String
+  category    String
+  difficulty  String
+  options     String
+  answer      String
+  explanation String
+  timeLimit   Int                @default(60)
+  tags        String             @default("")
+  attempts    QuestionAttempt[]
+  @@index([category, difficulty])
+}
+
+model QuestionAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  questionId  String
+  selected    String
+  correct     Boolean
+  timeTaken   Int
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
+}
+
+model CodingProblem {
+  id          String             @id @default(cuid())
+  title       String
+  category    String
+  difficulty  String
+  statement   String
+  inputFormat String
+  outputFormat String
+  constraints String
+  examples    String
+  hints       String
+  submissions CodingSubmission[]
+  @@index([category, difficulty])
+}
+
+model CodingSubmission {
+  id        String        @id @default(cuid())
+  userId    String
+  problemId String
+  language  String
+  code      String
+  status    String        @default("Pending")
+  createdAt DateTime      @default(now())
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem   CodingProblem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
+}
+
+model InterviewPractice {
+  id         String   @id @default(cuid())
+  userId     String
+  kind       String
+  topic      String
+  prompt     String
+  answer     String
+  selfRating Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, kind, createdAt])
+}

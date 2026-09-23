@@ -1,69 +1,15 @@
-import Image from "next/image";
-
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}
+import Link from "next/link";
+import { ArrowRight, BrainCircuit, Code2, MessagesSquare, Target, ChartNoAxesCombined, Sparkles } from "lucide-react";
+const features=[
+  {icon:Target,title:"Aptitude practice",desc:"Sharpen quantitative, logical, and verbal reasoning with timed questions and clear explanations.",tone:"mint"},
+  {icon:Code2,title:"Coding preparation",desc:"Work through curated problems by topic and difficulty. Keep your solutions and history in one place.",tone:"blue"},
+  {icon:MessagesSquare,title:"Interview confidence",desc:"Prepare for technical and HR conversations with guided questions and structured practice.",tone:"violet"},
+  {icon:ChartNoAxesCombined,title:"Progress that means something",desc:"See accuracy and weak topics calculated from your own practice, never made-up scores.",tone:"amber"},
+];
+export default function Home(){return <main className="landing"><nav className="landing-nav"><Link className="brand" href="/"><span className="brand-mark">p</span>prepforge<span className="brand-ai">ai</span></Link><div className="landing-links"><a href="#features">Platform</a><a href="#how">How it works</a></div><div className="nav-cta"><Link href="/login" className="login-link">Log in</Link><Link href="/register" className="button button-small">Start preparing <ArrowRight size={15}/></Link></div></nav>
+<section className="hero"><div className="hero-copy"><div className="eyebrow"><Sparkles size={14}/> YOUR PLACEMENT JOURNEY, IN FOCUS</div><h1>Show up ready<br/>for <span>what’s next.</span></h1><p className="hero-sub">A calmer, smarter way to prepare for placements. Practice the skills that matter, see your progress clearly, and walk into interviews with confidence.</p><div className="hero-actions"><Link href="/register" className="button">Build your plan <ArrowRight size={16}/></Link><a className="text-link" href="#features">Explore the platform <ArrowRight size={15}/></a></div><div className="hero-proof"><div className="proof-avatars"><i>R</i><i>A</i><i>K</i><i>+</i></div><span>Built for the work behind the offer</span></div></div>
+<div className="hero-visual"><div className="orb orb-one"/><div className="orb orb-two"/><div className="preview-card"><div className="preview-top"><div><span className="mini-label">YOUR PREPARATION</span><h3>A little progress, daily.</h3></div><span className="live-dot">THIS WEEK</span></div><div className="preview-readiness"><div><span className="mini-label">READINESS SCORE</span><div className="readiness-val">—<small> / 100</small></div><span className="readiness-note">Your score grows with practice</span></div><div className="ring"><span>START<br/>HERE</span></div></div><div className="preview-chart"><div className="chart-caption"><span>Practice activity</span><span>Last 7 days</span></div><div className="bars">{[28,43,35,68,48,83,60].map((v,i)=><div key={i} className={"bar b"+i} style={{height:(v+"%")}}/>)}</div><div className="days">{["M","T","W","T","F","S","S"].map((d,i)=><span key={i}>{d}</span>)}</div></div><div className="preview-footer"><span><span className="pulse"/> Your first step starts here</span><ArrowRight size={16}/></div></div><div className="floating-chip chip-one"><span className="chip-icon mint-bg"><Target size={16}/></span><span><b>One question at a time</b><small>Small wins add up</small></span></div><div className="floating-chip chip-two"><span className="chip-icon violet-bg"><BrainCircuit size={16}/></span><span><b>Feedback that helps</b><small>Learn as you go</small></span></div></div></section>
+<section className="trust-row"><span>ONE SPACE FOR THE WHOLE JOURNEY</span><div><span>APTITUDE</span><b>·</b><span>CODING</span><b>·</b><span>TECHNICAL</span><b>·</b><span>HR INTERVIEWS</span><b>·</b><span>YOUR NEXT STEP</span></div></section>
+<section id="features" className="features-section"><div className="section-heading"><div><div className="eyebrow">PREPARE WITH PURPOSE</div><h2>Everything you need.<br/><span>Nothing you don’t.</span></h2></div><p>Four focused spaces to turn preparation into real momentum.</p></div><div className="feature-grid">{features.map(({icon:Icon,title,desc,tone},i)=><article className="feature-card" key={title}><div className={"feature-icon "+tone}><Icon size={20}/></div><span className="feature-index">0{i+1}</span><h3>{title}</h3><p>{desc}</p><Link href="/register" aria-label={"Get started with "+title}>Explore <ArrowRight size={15}/></Link></article>)}</div></section>
+<section id="how" className="how-section"><div className="eyebrow">A CLEARER PATH FORWARD</div><h2>Know what to work on.<br/><span>Then take the next step.</span></h2><div className="steps"><article><span>01</span><Target/><h3>Practice</h3><p>Start with short, focused sessions in the areas that matter.</p></article><article><span>02</span><ChartNoAxesCombined/><h3>Understand</h3><p>Use your real results to spot strengths and places to grow.</p></article><article><span>03</span><BrainCircuit/><h3>Get ready</h3><p>Bring your learning into technical and HR interview practice.</p></article></div></section>
+<footer className="landing-footer"><Link className="brand" href="/"><span className="brand-mark">p</span>prepforge<span className="brand-ai">ai</span></Link><span>Made for the work behind your next opportunity.</span><Link href="/register">Start preparing <ArrowRight size={14}/></Link></footer></main>}
