@@ -123,7 +123,7 @@ In the Vercel project dashboard, add these variables under Project Settings → 
 - Build command: `npm run vercel-build`
 - Install command: `npm install`
 - Output directory: `.next`
-- Node.js version: 20.x
+- Node.js version: 24.x
 
 ### Prisma on Vercel
 
